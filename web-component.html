@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <custom-element__name attribute-to-observe = "value">
+  </custom-element__name>
+
+  <script>
+    class customElementClass extends HTMLElement {  
+      connectedCallback(){
+        this.render()
+      }
+
+      render(){
+        let sub__element = document.createElement('div');
+        sub__element.textContent = 'text content'
+        this.appendChild(sub__element)
+      }
+
+      static get observedAttributes(){
+        return ['attribute-to-observe']
+      }
+
+      attributeChangedCallback(){
+        this.render()
+      }
+    }
+    customElements.define('custom-element__name', CustomElementClass)
+  </script>
+</body>
+</html>
